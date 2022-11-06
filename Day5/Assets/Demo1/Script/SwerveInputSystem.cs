@@ -24,7 +24,7 @@ public class SwerveInputSystem : MonoBehaviour
 
             Vector3 currentMousePosition = Input.mousePosition;
 
-            _moveFactoryX = currentMousePosition.x = _lastFrameFingerPositionX;
+            _moveFactoryX = currentMousePosition.x - _lastFrameFingerPositionX;
 
             _lastFrameFingerPositionX = Input.mousePosition.x;
 

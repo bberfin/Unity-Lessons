@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class PlayerMoverRunner : MonoBehaviour
 
 
     public float VelocityOfPlayer;
+
+    public GameObject Effect;
 
     private void FixedUpdate()
     {
@@ -35,6 +38,29 @@ public class PlayerMoverRunner : MonoBehaviour
 
     public void AccessEndPoint()
     {
-        canMotion = false;
+        float angle = 0;
+        DOTween.To(() => VelocityOfPlayer, x => angle = x, 0, 1f)
+            .OnUpdate(() =>
+            {
+                Debug.Log("DOTween Update");
+            }).OnComplete(() => {
+                Debug.Log("On Complete");
+                canMotion = false;
+                Effect.gameObject.SetActive(true);
+
+                GameManager.Instance.ActivateWinUI();
+            });
+
+        
     }
+
+    IEnumerator DecreaseSpeedOfPlayer()
+    {
+        var yieldReturn = new WaitForEndOfFrame();
+        while (true)
+        {
+
+        }
+    }
+
 }

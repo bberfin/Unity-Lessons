@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class GameManager : MonoBehaviour
     public SwerveInputSystem SwerveInputSystem;
     public PlayerMoverRunner PlayerMoverRunner;
 
+
+    public RectTransform WinUI;
+    public RectTransform FailUI;
 
     #region Singleton
 
@@ -27,4 +31,15 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+    public void ActivateWinUI()
+    {
+
+        WinUI.gameObject.SetActive(true);
+        Vector3 defaultScale = WinUI.transform.localScale;
+
+
+        WinUI.transform.localScale =Vector3.one * 0.0001f;
+        WinUI.DOScale(defaultScale, 1f);
+    }
 }
