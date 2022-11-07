@@ -21,7 +21,18 @@ public class PlayerMoverRunner : MonoBehaviour
             return;
         }
 
-        transform.position += new Vector3(0f, 0f, 1f) * Time.deltaTime * VelocityOfPlayer ;            
+        transform.position += new Vector3(0f, 0f, 1f) * Time.deltaTime * VelocityOfPlayer;
+        
+       if(transform.position.x > 0.47f)
+        {
+            transform.position = new Vector3(0.47f, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.x < -0.47f)
+        {
+            transform.position = new Vector3(-0.47f, transform.position.y, transform.position.z);
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,6 +60,9 @@ public class PlayerMoverRunner : MonoBehaviour
                 Effect.gameObject.SetActive(true);
 
                 GameManager.Instance.ActivateWinUI();
+
+
+
             });
 
         

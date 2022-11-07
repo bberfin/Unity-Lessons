@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,6 +41,11 @@ public class GameManager : MonoBehaviour
 
 
         WinUI.transform.localScale =Vector3.one * 0.0001f;
-        WinUI.DOScale(defaultScale, 1f);
+        WinUI.DOScale(defaultScale, 1f).SetEase(Ease.OutBounce);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Demo1");
     }
 }
